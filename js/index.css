@@ -1,0 +1,73 @@
+.introContainer {
+  display: flex;
+}
+body {
+  display: flex;
+  justify-content: center;
+}
+.Tweet {
+  background-color: #fff;
+  border: 1px solid black;
+  border-width: 1px;
+  border-radius: 16px;
+  padding: 12px;
+}
+
+.Thumbnail {
+  size: 48px;
+  border-radius: 50%;
+  display: flex;
+}
+.Thumbnail > img {
+  border-radius: 50%;
+}
+
+.nameContainer {
+  display: flex;
+}
+.Name {
+  color: #000;
+  font-family: sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 12px;
+}
+
+.Metadata {
+  color: #71767b;
+  font-family: sans-serif;
+  font-size: 15px;
+  margin-left: 4px;
+}
+
+/* Use &middot; for the dot */
+
+.Message {
+  margin-top: 2px;
+  color: #0f1419;
+  font-family: sans-serif;
+  font-size: 15px;
+  margin-left: 12px;
+  margin-bottom: 12px;
+}
+
+.ActionRow {
+  display: flex;
+}
+.ActionCount {
+  color: #536471;
+  font-size: 13px;
+}
+
+svg {
+  margin-right: 12px;
+  fill: #536471;
+  size: 16px;
+}
+.iconContainer {
+  display: flex;
+  margin-left: 12px;
+  height: 16px;
+  justify-content: space-between;
+  max-width: 425px;
+}
