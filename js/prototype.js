@@ -130,15 +130,14 @@ Array.prototype.mySplice = function (startIndex, deleteCount, ...items) {
       fast++;
       slow++;
     }
-    while (slow <= this.length) {
-      delete this[slow];
-      slow++;
+    while (this.length !== slow) {
+      this.pop();
     }
   }
   return res;
 };
 const array2 = [1, 2, 3];
-console.log(array2.splice(1, 2));
-console.log(array.mySplice(1, 2));
+console.log(array2.splice(1, 1));
+console.log(array.mySplice(1, 1));
 console.log(array2);
 console.log(array);
