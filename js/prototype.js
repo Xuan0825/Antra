@@ -121,7 +121,7 @@ Array.prototype.mySplice = function (startIndex, deleteCount, ...items) {
     return res;
   } else {
     for (let i = startIndex; i < startIndex + deleteCount; i++) {
-      res.push(this[startIndex]);
+      res.push(this[i]);
     }
     let fast = startIndex + deleteCount;
     let slow = startIndex;
