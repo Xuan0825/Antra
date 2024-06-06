@@ -111,7 +111,7 @@ Array.prototype.mySplice = function (startIndex, deleteCount, ...items) {
       ? 0
       : startIndex < 0
       ? Math.max(this.length + startIndex, 0)
-      : Math.min(startIndex, this.length - 1);
+      : Math.min(startIndex, this.length);
   deleteCount =
     deleteCount === undefined || this.length - startIndex < deleteCount
       ? this.length - startIndex
@@ -136,8 +136,60 @@ Array.prototype.mySplice = function (startIndex, deleteCount, ...items) {
   }
   return res;
 };
+
+Array.prototype.splice1 = function (startIndex, deleteCount, ...items) {
+  // 处理 startIndex，允许负值
+  startIndex =
+    startIndex === undefined
+      ? 0
+      : startIndex < 0
+      ? Math.max(this.length + startIndex, 0)
+      : Math.min(startIndex, this.length);
+
+  // 处理 deleteCount，默认删除到数组末尾
+  deleteCount =
+    deleteCount === undefined || deleteCount > this.length - startIndex
+      ? this.length - startIndex
+      : Math.max(deleteCount, 0);
+
+  // 保存删除的元素
+  const res = [];
+  for (let i = 0; i < deleteCount; i++) {
+    res.push(this[startIndex + i]);
+  }
+
+  // 移动后面的元素到前面
+  const moveStart = startIndex + deleteCount;
+  const moveEnd = this.length;
+  const insertCount = items.length;
+  const newLength = this.length - deleteCount + insertCount;
+
+  if (insertCount > deleteCount) {
+    // 向后移动元素
+    for (let i = moveEnd - 1; i >= moveStart; i--) {
+      this[i + insertCount - deleteCount] = this[i];
+    }
+  } else if (insertCount < deleteCount) {
+    // 向前移动元素
+    for (let i = moveStart; i < moveEnd; i++) {
+      this[i + insertCount - deleteCount] = this[i];
+    }
+  }
+
+  // 插入新元素
+  for (let i = 0; i < insertCount; i++) {
+    this[startIndex + i] = items[i];
+  }
+
+  // 如果插入元素少于删除元素，调整数组长度
+  this.length = newLength;
+
+  // 返回删除的元素
+  return res;
+};
+
 const array2 = [1, 2, 3];
-console.log(array2.splice(1, 1));
-console.log(array.mySplice(1, 1));
-console.log(array2);
-console.log(array);
+// console.log(array2.splice(1, 1));
+// console.log(array.splice1(1, 1));
+// console.log(array2);
+// console.log(array);
